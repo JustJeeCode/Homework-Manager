@@ -24,23 +24,24 @@ line.configure(bg="black")
 line.grid(row=1, column=0, pady=1, padx=5)
 
 # Homework text
+
 homeworkText = Label(root, text="Enter homework to do:", font="Roboto 24")
 homeworkText.grid(row=2,column=0, pady=20, padx=5)
 
 # Homework to do text box
-homeworkTodo = Entry(root, width=50)
+homeworkTodo = Entry(root, width=50, bd=4, bg="white", font="Roboto 12")
 homeworkTodo.grid(row=3, column=0, pady=20, padx=5)
 
 # Time due text
 timeDueText = Label(root, text="Enter date due:", font="Roboto 24")
-timeDueText.grid(row=4,column=0, pady=20, padx=5)
+timeDueText.grid(row=4,column=0, pady=20, padx=10)
 
 # Date due text box
-dateDue = Entry(root, width=50)
-dateDue.grid(row=5, column=0, pady=20, padx=5)
+dateDue = Entry(root, width=50, bd=4, bg="white", font="Roboto 12")
+dateDue.grid(row=5, column=0, pady=20, padx=10)
 
-# Submit button
-submitButton = Button(root, text="Submit", command=submitAction)
+# Submit button 
+submitButton = Button(root, text="Submit", font="Roboto 12", height=2, width=12, activebackground="lightgreen", command=submitAction)
 submitButton.grid(row=6, column=0, pady=20, padx=5)
 
 
