@@ -6,4 +6,9 @@ created to learn how to use Tkinter and have a app to manage homework!
 
 from tkinter import *
 
-print("test")
+root = Tk()
+
+myButton = Button(root, text="click me", padx=50, pady=50)
+myButton.pack()
+
+root.mainloop()
