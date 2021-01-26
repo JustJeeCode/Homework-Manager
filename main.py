@@ -35,8 +35,8 @@ secondFrame = Frame(my_canvas)
 my_canvas.create_window((0,0), window=secondFrame, anchor="nw")
 
 # Variables
-newRow = 9 #first new save
-newRow2 = 10 #first delete button
+newRow = 9
+newRow2 = 10
 deleteRow = newRow 
 deleteRow2 = newRow2 
 
@@ -66,16 +66,13 @@ def submit_action():
         deleteRow += 2
         deleteRow2 += 2
 
-        print("adding a row" + str(newRow))
-        print("adding a row" + str(newRow2))
-
         homeworkDue = Label(secondFrame, text=savedHomeworkTodo + " | Date due: " + savedDateDue, font="Roboto 18")
         homeworkDue.grid(row=newRow, column=0, pady=10, padx=10)
         deleteButton = Button(secondFrame, text="Delete", font="Roboto 10", height=2, width=8, activebackground="red", command=delete_button_action)
         deleteButton.grid(row=newRow2, column=0, pady=2, padx=10)
 
+# Deletes the label and button
 def delete_button_action():
-    print("delete button pressed")
     global deleteRow
     global deleteRow2
     global newRow
@@ -83,15 +80,13 @@ def delete_button_action():
 
     l = list(secondFrame.grid_slaves(row=int(deleteRow)))
     l2 = list(secondFrame.grid_slaves(row=int(deleteRow2)))
-    print(l)
+
     for w in l:
         w.grid_forget()
 
     for w in l2:
         w.grid_forget()
-
-    print("deleteting a row" + str(deleteRow))
-    print("deleteting a row" + str(deleteRow2))
+        
     deleteRow -= 2
     deleteRow2 -= 2
     newRow -= 2
