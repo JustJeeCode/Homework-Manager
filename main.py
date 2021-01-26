@@ -35,8 +35,10 @@ secondFrame = Frame(my_canvas)
 my_canvas.create_window((0,0), window=secondFrame, anchor="nw")
 
 # Variables
-newRow = 11
-newRow2 = 12
+newRow = 9 #first new save
+newRow2 = 10 #first delete button
+deleteRow = newRow 
+deleteRow2 = newRow2 
 
 # Saves the text in the entrys
 def get_entrys():
@@ -48,7 +50,6 @@ def get_entrys():
 
 # Prints saved text and saves it
 def submit_action():
-
     get_entrys()
     if savedHomeworkTodo == "" or savedDateDue == "":
         print("Error")
@@ -58,8 +59,15 @@ def submit_action():
         global newRow2
         global homeworkDue
         global deleteButton
+        global deleteRow
+        global deleteRow2
         newRow += 2
         newRow2 += 2
+        deleteRow += 2
+        deleteRow2 += 2
+
+        print("adding a row" + str(newRow))
+        print("adding a row" + str(newRow2))
 
         homeworkDue = Label(secondFrame, text=savedHomeworkTodo + " | Date due: " + savedDateDue, font="Roboto 18")
         homeworkDue.grid(row=newRow, column=0, pady=10, padx=10)
@@ -68,8 +76,26 @@ def submit_action():
 
 def delete_button_action():
     print("delete button pressed")
-    homeworkDue.destroy()
-    deleteButton.destroy()
+    global deleteRow
+    global deleteRow2
+    global newRow
+    global newRow2
+
+    l = list(secondFrame.grid_slaves(row=int(deleteRow)))
+    l2 = list(secondFrame.grid_slaves(row=int(deleteRow2)))
+    print(l)
+    for w in l:
+        w.grid_forget()
+
+    for w in l2:
+        w.grid_forget()
+
+    print("deleteting a row" + str(deleteRow))
+    print("deleteting a row" + str(deleteRow2))
+    deleteRow -= 2
+    deleteRow2 -= 2
+    newRow -= 2
+    newRow2 -= 2
 
 
 # Over title line work
@@ -114,14 +140,6 @@ line.grid(row=9, column=0, pady=30, padx=0)
 # Homework todo label
 homeworkTodoLabel = Label(secondFrame, text="Homework to-do:", font="Roboto 24")
 homeworkTodoLabel.grid(row=10, column=0, pady=20, padx=10)
-
-
-
-
-
-
-
-
 
 
 root.mainloop()
