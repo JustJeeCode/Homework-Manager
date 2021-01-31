@@ -2,24 +2,71 @@
 Homework Manager App!
 created by JustJee 22/01/2021 
 created to learn how to use Tkinter and have a app to manage homework!
+
+get meta data for the rows
+
+put that in a list
+
+
 """
+
+# GUI resolution
+width = 1920
+height = 1080
 
 # Imports
 from tkinter import *
 from tkinter import ttk
-from settings import *
-from data import HandleEntry
+
+
+# Variables
+global savedHomework
+global savedDate
+global homeworkList
+homeworkList = []
+
 
 # Settings for the GUI
 root = Tk()
 root.title("Homework Manager!")
 root.geometry(str(width) + "x" + str(height))
 
-def get_entry():
-    HandleEntry.homeworkEntry = homeworkTodo.get()
-    HandleEntry.dateEntry = dateDue.get()
 
-    print(HandleEntry.homeworkEntry, HandleEntry.dateEntry)
+
+
+
+class Homework:
+    def __init__(self, homeworkRow, dateRow):
+        self.homeworkRow = homeworkRow
+        self.dateRow = dateRow
+
+    def add_rows(self):
+        self.homeworkRow += 2
+        self.dateRow += 2
+
+rows = Homework(11, 12)
+
+
+def get_entrys():
+        savedHomework = homeworkTodo.get()
+        savedDate = dateDue.get()
+
+        homeworkList.append(savedHomework)
+        homeworkList.append(rows.homeworkRow)
+        homeworkList.append(savedDate)
+        homeworkList.append(rows.dateRow)
+
+        rows.add_rows()
+        print(homeworkList)
+    
+
+
+
+
+
+
+
+
 
 # Over title line work
 line = Canvas(root, width=width, height=3, bd=0,highlightthickness=0)
@@ -52,7 +99,7 @@ dateDue = Entry(root, width=50, bd=4, bg="white", font="Roboto 12")
 dateDue.grid(row=7, column=0, pady=20, padx=10)
 
 # Submit button 
-submitButton = Button(root, text="Submit", font="Roboto 12", height=2, width=12, activebackground="lightgreen", command=get_entry)
+submitButton = Button(root, text="Submit", font="Roboto 12", height=2, width=12, activebackground="lightgreen", command=get_entrys)
 submitButton.grid(row=8, column=0, pady=20, padx=5)
 
 # Homework todo label underline
