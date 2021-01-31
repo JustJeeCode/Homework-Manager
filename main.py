@@ -2,12 +2,6 @@
 Homework Manager App!
 created by JustJee 22/01/2021 
 created to learn how to use Tkinter and have a app to manage homework!
-
-get meta data for the rows
-
-put that in a list
-
-
 """
 
 # GUI resolution
@@ -23,6 +17,8 @@ from tkinter import ttk
 global savedHomework
 global savedDate
 global homeworkList
+savedHomework = ""
+savedDate = ""
 homeworkList = []
 
 
@@ -33,9 +29,7 @@ root.geometry(str(width) + "x" + str(height))
 
 
 
-
-
-class Homework:
+class Rows:
     def __init__(self, homeworkRow, dateRow):
         self.homeworkRow = homeworkRow
         self.dateRow = dateRow
@@ -44,26 +38,33 @@ class Homework:
         self.homeworkRow += 2
         self.dateRow += 2
 
-rows = Homework(11, 12)
+rows = Rows(11, 12)
 
+class Entrys:
+    def __init__(self, savedHomework, savedDate, homeworkList):
+        self.savedHomework = savedHomework
+        self.savedDate = savedDate
+        self.homeworkList = homeworkList
 
-def get_entrys():
-        savedHomework = homeworkTodo.get()
-        savedDate = dateDue.get()
+    def get_entrys(self):
+        self.savedHomework = homeworkTodo.get()
+        self.savedDate = dateDue.get()
 
-        homeworkList.append(savedHomework)
-        homeworkList.append(rows.homeworkRow)
-        homeworkList.append(savedDate)
-        homeworkList.append(rows.dateRow)
+        self.homeworkList.append(savedHomework)
+        self.homeworkList.append(rows.homeworkRow)
+        self.homeworkList.append(savedDate)
+        self.homeworkList.append(rows.dateRow)
 
         rows.add_rows()
-        print(homeworkList)
-    
+        self.create_entrys()
 
+    def create_entrys(self):
+        newHomework = Label(root, text=self.savedHomework + " | Date due: " + self.savedDate, font="Roboto 18")
+        newHomework.grid(row=rows.homeworkRow, column=0, pady=10, padx=10)
+        deleteButton = Button(root, text="Delete", font="Roboto 10", height=2, width=8, activebackground="red")
+        deleteButton.grid(row=rows.dateRow, column=0, pady=2, padx=10) 
 
-
-
-
+entrys = Entrys(savedHomework, savedDate, homeworkList)
 
 
 
@@ -99,7 +100,7 @@ dateDue = Entry(root, width=50, bd=4, bg="white", font="Roboto 12")
 dateDue.grid(row=7, column=0, pady=20, padx=10)
 
 # Submit button 
-submitButton = Button(root, text="Submit", font="Roboto 12", height=2, width=12, activebackground="lightgreen", command=get_entrys)
+submitButton = Button(root, text="Submit", font="Roboto 12", height=2, width=12, activebackground="lightgreen", command=entrys.get_entrys)
 submitButton.grid(row=8, column=0, pady=20, padx=5)
 
 # Homework todo label underline
