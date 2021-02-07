@@ -1,5 +1,6 @@
 # Imports
 import tkinter as tk
+import tkinter.font
 
 # Variables
 width = 1920
@@ -9,16 +10,15 @@ root = tk.Tk()
 root.geometry(str(width) + "x" + str(height))
 root.title("Homework Manager!")
 
-
 # Header Class
 class Header(tk.Frame):
     def __init__(self):
         # Heading
-        self.homeworkHeading = tk.Label(root, text = "Homework Manager", font = "CaterOne_Font 30")
+        self.homeworkHeading = tk.Label(root, text = "Homework Manager", font = "FunSized 35 bold")
         self.homeworkHeading.grid(row = 1, column = 1, padx = 10, pady = 10)
 
         # Heading Underline
-        self.titleUnderline = tk.Canvas(root, width = width, height = 3, bd= 0, highlightthickness = 0)
+        self.titleUnderline = tk.Canvas(root, width = width, height = 3, bd = 0, highlightthickness = 0)
         self.titleUnderline.configure(bg = "black")
         self.titleUnderline.grid(row = 2, column = 1, pady = 10, padx = 0)
 
@@ -73,6 +73,7 @@ class MainApplication(tk.Frame):
     date = Date()
     newSubmission = NewSubmission()
     TodoTitle = TodoTitle()
+
 
 # Packing MainApp
 MainApplication(root).grid(row = 0, column = 0)
