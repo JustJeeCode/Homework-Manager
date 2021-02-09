@@ -24,8 +24,7 @@ class Header(tk.Frame):
         self.homeworkHeading = mainCanvas.create_text(960, 50, text = "Homework Manager", font = "oldnewspapertypes 40 bold")
 
         # Heading Underline
-        #line = canvas.create_line(x0, y0, x1, y1, ..., xn, yn, options)
-        self.titleUnderline = mainCanvas.create_line(960, 70, 1920, 3)
+        self.titleUnderline = mainCanvas.create_rectangle(1920, 100, 0, 105, fill = "black")
 
 
 # Homework Class
@@ -57,11 +56,12 @@ class NewSubmission(tk.Frame):
 # Homework Todo List Class
 class TodoTitle(tk.Frame):
     def __init__(self):
-        self.overline = tk.Canvas(root, width = width, height = 3, bd = 0,highlightthickness = 0)
-        self.overline.configure(bg = "black")
+        # Title overline
+        self.titleOverline = mainCanvas.create_rectangle(1920, 350, 0, 355, fill = "black")
 
         # Homework todo label
         self.TodoLabel = mainCanvas.create_text(960, 380, text = "Homework Todo:", font = "Linowrite 24")
+        
 
 
 # Main App
